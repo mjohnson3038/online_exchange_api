@@ -11,7 +11,7 @@ class Retailer(models.Model):
 
 class User(models.Model):
     user_name = models.CharField(null=False, max_length=50)
-    retailer = models.ForeignKey(Retailer, on_delete=models.CASCADE)
+    retailer = models.ForeignKey(Retailer)
     
 
 class Category(models.Model):
@@ -20,7 +20,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(null=False, max_length=50)
-    retailer = models.ForeignKey(Retailer, on_delete=models.CASCADE)
+    retailer = models.ForeignKey(Retailer)
     price = models.DecimalField(null=False, decimal_places=2, max_digits=8)
     category = models.ManyToManyField(Category)
     stock_quantity = models.IntegerField()
@@ -32,7 +32,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product)
     quantity = models.IntegerField()
 
     
